@@ -25,7 +25,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-//@WebMvcTest // Web용 bean들만 등록해준다
 @SpringBootTest
 @AutoConfigureMockMvc
 public class EventControllerTests {
@@ -36,8 +35,6 @@ public class EventControllerTests {
     @Autowired
     ObjectMapper objectMapper;
 
-//    @MockBean
-//    EventRepository eventRepository;
 
     @Test
     public void createEvent() throws Exception {
@@ -57,7 +54,6 @@ public class EventControllerTests {
                 .offline(false)
                 .eventStatus(EventStatus.PUBLISHED)
                 .build();
-//        Mockito.when(eventRepository.save(event)).thenReturn(event);
 
         mockMvc.perform(post("/api/events/")
                     .contentType(MediaType.APPLICATION_JSON_UTF8)
