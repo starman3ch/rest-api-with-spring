@@ -2,10 +2,12 @@ package me.sandman.restapiwithspring.events;
 
 import lombok.*;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Builder @AllArgsConstructor @NoArgsConstructor
 @Getter @Setter @EqualsAndHashCode(of = "id")
+@Entity
 public class Event {
     // of = id라 준 이유는 equals와 hashcode를 구현할 때 (안주면 모든 필드를 다 사용하는데) Entity간에 연관관계가 있을때 상호참조하는 관계가
     // 돼버리면 equals와 hashcode를 구현하는 함수 안에서 stackOverflow가 날 수 있음.
@@ -13,6 +15,7 @@ public class Event {
 
     // lombok annotion은 meta annotation 으로 묶을 수 없다.
 
+    @Id @GeneratedValue
     private Integer id;
     private String name;
     private String description;
@@ -26,6 +29,7 @@ public class Event {
     private int limitOfEnrollment;
     private boolean offline;
     private boolean free;
+    @Enumerated(EnumType.STRING)
     private EventStatus eventStatus;
 
 }
