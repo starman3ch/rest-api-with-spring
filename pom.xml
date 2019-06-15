@@ -41,6 +41,13 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional><!--이 의존성은 이 프로젝트를 참조하고 있는 다른 프로젝트에 의존성이 추가되지 않음.-->
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.modelmapper/modelmapper -->
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>2.3.4</version>
+        </dependency>
+
 
         <dependency>
             <groupId>com.h2database</groupId>
