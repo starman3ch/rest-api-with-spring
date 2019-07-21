@@ -3,6 +3,7 @@ package me.sandman.restapiwithspring.configs;
 import me.sandman.restapiwithspring.accounts.Account;
 import me.sandman.restapiwithspring.accounts.AccountRole;
 import me.sandman.restapiwithspring.accounts.AccountService;
+import me.sandman.restapiwithspring.common.AppProperties;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -34,14 +35,24 @@ public class AppConfig {
             @Autowired
             AccountService accountService;
 
+            @Autowired
+            AppProperties appProperties;
+
             @Override
             public void run(ApplicationArguments args) throws Exception {
-                Account sandman = Account.builder()
-                        .email("sandman@email.com")
-                        .password("12341234")
+                Account admin = Account.builder()
+                        .email(appProperties.getAdminUsername())
+                        .password(appProperties.getAdminPassword())
                         .roles(Set.of(AccountRole.ADMIN, AccountRole.USER))
                         .build();
-                accountService.saveAccount(sandman);
+                accountService.saveAccount(admin);
+
+                Account user = Account.builder()
+                        .email(appProperties.getUserUsername())
+                        .password(appProperties.getUserPassword())
+                        .roles(Set.of(AccountRole.USER))
+                        .build();
+                accountService.saveAccount(user);
             }
         };
     }
