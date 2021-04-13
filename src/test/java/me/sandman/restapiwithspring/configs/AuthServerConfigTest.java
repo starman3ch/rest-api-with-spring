@@ -1,24 +1,19 @@
 package me.sandman.restapiwithspring.configs;
 
-import me.sandman.restapiwithspring.accounts.Account;
-import me.sandman.restapiwithspring.accounts.AccountRole;
 import me.sandman.restapiwithspring.accounts.AccountService;
 import me.sandman.restapiwithspring.common.AppProperties;
-import me.sandman.restapiwithspring.common.BaseControllerTest;
-import me.sandman.restapiwithspring.common.TestDescription;
-import org.junit.Test;
+import me.sandman.restapiwithspring.common.BaseTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Set;
-
-import static org.junit.Assert.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class AuthServerConfigTest extends BaseControllerTest {
+public class AuthServerConfigTest extends BaseTest {
 
     @Autowired
     AccountService accountService;
@@ -27,7 +22,7 @@ public class AuthServerConfigTest extends BaseControllerTest {
     AppProperties appProperties;
 
     @Test
-    @TestDescription("인증 토큰을 발급 받는 서비스")
+    @DisplayName("인증 토큰을 발급 받는 서비스")
     public void getAuthToken() throws Exception {
         this.mockMvc.perform(post("/oauth/token")
                     .with(httpBasic(appProperties.getClientId(), appProperties.getClientSecret()))

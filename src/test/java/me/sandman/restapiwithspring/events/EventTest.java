@@ -1,13 +1,12 @@
 package me.sandman.restapiwithspring.events;
 
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.runner.RunWith;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(JUnitParamsRunner.class)
+//@RunWith(JUnitParamsRunner.class)
 public class EventTest {
 
     @Test
@@ -43,7 +42,8 @@ public class EventTest {
 //            "0, 100, false"
 //    })
 //    @Parameters(method = "parametersForTestFree")
-    @Parameters
+//    @Parameters
+    @ParameterizedTest
     public void testFree(int basePrice, int maxPrice, boolean isFree) {
         // Given
         Event event = Event.builder()
@@ -68,7 +68,7 @@ public class EventTest {
     }
 
     @Test
-    @Parameters
+    @ParameterizedTest
     public void testOffline(String location, boolean isOffline) {
         // Given
         Event event = Event.builder()
